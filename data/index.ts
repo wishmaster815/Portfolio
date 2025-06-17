@@ -2,9 +2,11 @@ export const navItems = [
   { name: "Home", link: "#home" },
   { name: "About", link: "#about" },
   { name: "Projects", link: "#projects" },
-  { name: "Testimonials", link: "#testimonials" },
+  { name: "ToolBox", link: "#skills" },
   { name: "Contact", link: "#contact" },
 ];
+
+export const words = ['Full Stack Web Developer', 'AI Engineer', 'UI/UX Designer']
 
 export const gridItems = [
   {
@@ -110,72 +112,6 @@ export const projects = [
   },
 ];
 
-// export const testimonials = [
-//   {
-//     quote:
-//       "Collaborating with Jayesh was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jayesh's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jayesh is the ideal partner.",
-//     name: "Michael Johnson",
-//     title: "Director of AlphaStream Technologies",
-//   },
-//   {
-//     quote:
-//       "Collaborating with Jayesh was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jayesh's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jayesh is the ideal partner.",
-//     name: "Michael Johnson",
-//     title: "Director of AlphaStream Technologies",
-//   },
-//   {
-//     quote:
-//       "Collaborating with Jayesh was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jayesh's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jayesh is the ideal partner.",
-//     name: "Michael Johnson",
-//     title: "Director of AlphaStream Technologies",
-//   },
-//   {
-//     quote:
-//       "Collaborating with Jayesh was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jayesh's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jayesh is the ideal partner.",
-//     name: "Michael Johnson",
-//     title: "Director of AlphaStream Technologies",
-//   },
-//   {
-//     quote:
-//       "Collaborating with Jayesh was an absolute pleasure. His professionalism, promptness, and dedication to delivering exceptional results were evident throughout our project. Jayesh's enthusiasm for every facet of development truly stands out. If you're seeking to elevate your website and elevate your brand, Jayesh is the ideal partner.",
-//     name: "Michael Johnson",
-//     title: "Director of AlphaStream Technologies",
-//   },
-// ];
-
-// export const companies = [
-//   {
-//     id: 1,
-//     name: "cloudinary",
-//     img: "/cloud.svg",
-//     nameImg: "/cloudName.svg",
-//   },
-//   {
-//     id: 2,
-//     name: "appwrite",
-//     img: "/app.svg",
-//     nameImg: "/appName.svg",
-//   },
-//   {
-//     id: 3,
-//     name: "HOSTINGER",
-//     img: "/host.svg",
-//     nameImg: "/hostName.svg",
-//   },
-//   {
-//     id: 4,
-//     name: "stream",
-//     img: "/s.svg",
-//     nameImg: "/streamName.svg",
-//   },
-//   {
-//     id: 5,
-//     name: "docker.",
-//     img: "/dock.svg",
-//     nameImg: "/dockerName.svg",
-//   },
-// ];
-
 export const workExperience = [
   {
     id: 1,
@@ -204,6 +140,24 @@ export const workExperience = [
     desc: "Participated in multiple national-level hackathons, building real-world solutions in AI, web, and automation domains.",
     className: "md:col-span-2",
     thumbnail: "/exp4.svg",
+  },
+];
+
+export const codingLinks = [
+  {
+    id: 1,
+    title: "LeetCode",
+    Link: "https://leetcode.com/u/jayeshshrivastava815/",
+  },
+  {
+    id: 2,
+    title: "Geeks\nFor\nGeeks",
+    Link: "https://www.geeksforgeeks.org/user/jayeshshrivzfj5/",
+  },
+  {
+    id: 3,
+    title: "Coding\nNinjas",
+    Link: "https://www.naukri.com/code360/profile/3cc003f1-0e36-4ab7-976b-e07b78c4eb3a",
   },
 ];
 

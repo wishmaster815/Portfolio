@@ -1,23 +1,64 @@
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-
 import { CanvasRevealEffect } from "./ui/CanvasRevealEffect";
+import {
+  SiReact,
+  SiTypescript,
+  SiJavascript,
+  SiTailwindcss,
+  SiNodedotjs,
+  SiPython,
+  SiTensorflow,
+  SiPytorch,
+  SiScikitlearn,
+  SiNextdotjs,
+  SiFramer,
+  SiFigma,
+  SiMongodb,
+  SiFirebase,
+  SiJsonwebtokens,
+  SiPostman,
+  SiAmazonaws,
+  SiSupabase,
+  SiJupyter,
+  SiGooglecolab,
+  SiNumpy,
+  SiPandas,
+} from "react-icons/si";
 
-const Approach = () => {
+const TechStack = () => {
   return (
-    <section className="w-full py-20">
+    <section id="skills" className="w-full py-20">
       <h1 className="heading">
-        My <span className="text-purple">approach</span>
+        <span className="text-purple">Skills and Tech Stack</span>
       </h1>
       {/* remove bg-white dark:bg-black */}
       <div className="my-20 flex flex-col lg:flex-row items-center justify-center w-full gap-4">
-        {/* add des prop */}
         <Card
-          title="Planning & Strategy"
-          icon={<AceternityIcon order="Phase 1" />}
-          des="We'll collaborate to map out your website's goals, target audience, 
-          and key functionalities. We'll discuss things like site structure, 
-          navigation, and content requirements."
+          title="Frontend Development"
+          icon={<AceternityIcon order="Frontend" />}
+          des={
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <TechItem
+                icon={<SiNextdotjs className="w-8 h-8" />}
+                name="Next.Js"
+              />
+              <TechItem icon={<SiReact className="w-8 h-8" />} name="React" />
+              <TechItem
+                icon={<SiTypescript className="w-8 h-8" />}
+                name="TypeScript"
+              />
+              <TechItem
+                icon={<SiJavascript className="w-8 h-8" />}
+                name="JavaScript"
+              />
+              <TechItem
+                icon={<SiTailwindcss className="w-8 h-8" />}
+                name="Tailwind CSS"
+              />
+              <TechItem icon={<SiFigma className="w-8 h-8" />} name="Figma" />
+            </div>
+          }
         >
           <CanvasRevealEffect
             animationSpeed={5.1}
@@ -26,11 +67,36 @@ const Approach = () => {
           />
         </Card>
         <Card
-          title="Development & Progress Update"
-          icon={<AceternityIcon order="Phase 2" />}
-          des="Once we agree on the plan, I cue my lofi playlist and dive into
-          coding. From initial sketches to polished code, I keep you updated
-          every step of the way."
+          title="Backend Development"
+          icon={<AceternityIcon order="Backend" />}
+          des={
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <TechItem
+                icon={<SiNodedotjs className="w-8 h-8" />}
+                name="Node.js"
+              />
+              <TechItem
+                icon={<SiMongodb className="w-8 h-8" />}
+                name="MongoDB"
+              />
+              <TechItem
+                icon={<SiSupabase className="w-8 h-8" />}
+                name="Supabase"
+              />
+              <TechItem
+                icon={<SiFirebase className="w-8 h-8" />}
+                name="Firebase"
+              />
+              <TechItem
+                icon={<SiJsonwebtokens className="w-8 h-8" />}
+                name="JWT"
+              />
+              <TechItem
+                icon={<SiPostman className="w-8 h-8" />}
+                name="Postman"
+              />
+            </div>
+          }
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -43,16 +109,36 @@ const Approach = () => {
             ]}
             dotSize={2}
           />
-          {/* Radial gradient for the cute fade */}
-          {/* remove this one */}
-          {/* <div className="absolute inset-0 [mask-image:radial-gradient(400px_at_center,white,transparent)] bg-black/50 dark:bg-black/90" /> */}
         </Card>
         <Card
-          title="Development & Launch"
-          icon={<AceternityIcon order="Phase 3" />}
-          des="This is where the magic happens! Based on the approved design, 
-          I'll translate everything into functional code, building your website
-          from the ground up."
+          title="Artificial Intelligence/ Machine Learning"
+          icon={<AceternityIcon order="ML/AI" />}
+          des={
+            <div className="grid grid-cols-2 gap-4 mt-4">
+              <TechItem icon={<SiPython className="w-8 h-8" />} name="Python" />
+              <TechItem icon={<SiNumpy className="w-8 h-8" />} name="Numpy" />
+              <TechItem icon={<SiPandas className="w-8 h-8" />} name="Pandas" />
+              <TechItem
+                icon={<SiTensorflow className="w-8 h-8" />}
+                name="TensorFlow"
+              />
+              <TechItem
+                icon={<SiPytorch className="w-8 h-8" />}
+                name="PyTorch"
+              />
+              <TechItem
+                icon={<SiScikitlearn className="w-8 h-8" />}
+                name="Scikit-learn"
+              />
+              <TechItem
+                icon={<SiJupyter className="w-8 h-8" />}
+                name="Jupyter"
+              />
+              <TechItem image="/langchain.png" name="LangChain" />
+              <TechItem image="/ollama.png" name="Ollama" />
+              <TechItem image="/huggingface.png" name="HuggingFace" />
+            </div>
+          }
         >
           <CanvasRevealEffect
             animationSpeed={3}
@@ -64,8 +150,7 @@ const Approach = () => {
     </section>
   );
 };
-
-export default Approach;
+export default TechStack;
 
 const Card = ({
   title,
@@ -77,7 +162,7 @@ const Card = ({
   title: string;
   icon: React.ReactNode;
   children?: React.ReactNode;
-  des: string;
+  des: React.ReactNode;
 }) => {
   const [hovered, setHovered] = React.useState(false);
   return (
@@ -131,18 +216,39 @@ const Card = ({
           {title}
         </h2>
         {/* add this one for the description */}
-        <p
+        <div
           className="text-sm opacity-0 group-hover/canvas-card:opacity-100
          relative z-10 mt-4 group-hover/canvas-card:text-white text-center
          group-hover/canvas-card:-translate-y-2 transition duration-200"
-          style={{ color: "#E4ECFF" }}
         >
           {des}
-        </p>
+        </div>
       </div>
     </div>
   );
 };
+
+const TechItem = ({
+  icon,
+  name,
+  image,
+}: {
+  icon?: React.ReactNode;
+  name: string;
+  image?: string;
+}) => {
+  return (
+    <div className="flex items-center gap-2 text-white">
+      {icon ? (
+        icon
+      ) : image ? (
+        <img src={image} alt={name} className="w-8 h-8" />
+      ) : null}
+      <span className="text-sm">{name}</span>
+    </div>
+  );
+};
+
 // add order prop for the Phase number change
 const AceternityIcon = ({ order }: { order: string }) => {
   return (
@@ -164,24 +270,6 @@ const AceternityIcon = ({ order }: { order: string }) => {
         </span>
       </button>
     </div>
-    // remove the svg and add the button
-    // <svg
-    //   width="66"
-    //   height="65"
-    //   viewBox="0 0 66 65"
-    //   fill="none"
-    //   xmlns="http://www.w3.org/2000/svg"
-    //   className="h-10 w-10 text-black dark:text-white group-hover/canvas-card:text-white "
-    // >
-    //   <path
-    //     d="M8 8.05571C8 8.05571 54.9009 18.1782 57.8687 30.062C60.8365 41.9458 9.05432 57.4696 9.05432 57.4696"
-    //     stroke="currentColor"
-    //     strokeWidth="15"
-    //     strokeMiterlimit="3.86874"
-    //     strokeLinecap="round"
-    //     style={{ mixBlendMode: "darken" }}
-    //   />
-    // </svg>
   );
 };
 

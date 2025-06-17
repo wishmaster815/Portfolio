@@ -3,10 +3,16 @@ import { FaLocationArrow } from "react-icons/fa6";
 import MagicButton from "./MagicButton";
 import { Spotlight } from "./ui/Spotlight";
 import { TextGenerateEffect } from "./ui/TextGenerateEffect";
+import { FlipWords } from "./ui/FlipWords";
+import { words } from "@/data";
+import { IoMdContact } from "react-icons/io";
 
 const Hero = () => {
   return (
-    <div className="min-h-screen flex items-center justify-center relative" id="home">
+    <div
+      className="min-h-screen flex items-center justify-center relative"
+      id="home"
+    >
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
@@ -46,16 +52,27 @@ const Hero = () => {
           />
 
           <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi! I&apos;m Jayesh, a FullStack Developer | AI Engineer based in India.
+            Hi! I&apos;m Jayesh,
+            <FlipWords words={words} />
+            based in India.
           </p>
 
-          <a href="#about">
-            <MagicButton
-              title="Show my work"
-              icon={<FaLocationArrow />}
-              position="right"
-            />
-          </a>
+          <div className="flex justify-center gap-4">
+            <a href="https://drive.google.com/file/d/16Qj2BlL2oAqnkVr-_YNHYWGiFQcYoq8I/view?usp=sharing">
+              <MagicButton
+                title="Download CV "
+                icon={<IoMdContact />}
+                position="right"
+              />
+            </a>
+            <a href="mailto:jayeshshrivastava815@gmail.com">
+              <MagicButton
+                title="Let's get in touch"
+                icon={<FaLocationArrow />}
+                position="right"
+              />
+            </a>
+          </div>
         </div>
       </div>
     </div>

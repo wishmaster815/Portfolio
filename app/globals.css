@@ -6,7 +6,9 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 120px; /* Increased padding to account for navbar height */
 }
-
+:root {
+  cursor: default;
+}
 body {
   @apply bg-black-100;
 }
