@@ -6,10 +6,15 @@ import { FaArrowUp } from "react-icons/fa";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // Show button when page is scrolled up to given distance
   const toggleVisibility = () => {
-    if (window.pageYOffset > 300) {
+    if (typeof window !== 'undefined' && window.pageYOffset > 300) {
       setIsVisible(true);
     } else {
       setIsVisible(false);
@@ -18,19 +23,25 @@ const ScrollToTop = () => {
 
   // Set the scroll event listener
   useEffect(() => {
-    window.addEventListener("scroll", toggleVisibility);
-    return () => {
-      window.removeEventListener("scroll", toggleVisibility);
-    };
+    if (typeof window !== 'undefined') {
+      window.addEventListener("scroll", toggleVisibility);
+      return () => {
+        window.removeEventListener("scroll", toggleVisibility);
+      };
+    }
   }, []);
 
   // Scroll to top smoothly
   const scrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    if (typeof window !== 'undefined') {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
   };
+
+  if (!isMounted) return null;
 
   return (
     <AnimatePresence mode="wait">
