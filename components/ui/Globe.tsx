@@ -61,6 +61,7 @@ interface WorldProps {
 let numbersOfRings = [0];
 
 export function Globe({ globeConfig, data }: WorldProps) {
+  const [isMounted, setIsMounted] = useState(false);
   const [globeData, setGlobeData] = useState<
     | {
         size: number;
@@ -92,11 +93,15 @@ export function Globe({ globeConfig, data }: WorldProps) {
   };
 
   useEffect(() => {
-    if (globeRef.current) {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (isMounted && globeRef.current) {
       _buildData();
       _buildMaterial();
     }
-  }, [globeRef.current]);
+  }, [isMounted, globeRef.current]);
 
   const _buildMaterial = () => {
     if (!globeRef.current) return;
@@ -149,7 +154,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   };
 
   useEffect(() => {
-    if (globeRef.current && globeData) {
+    if (isMounted && globeRef.current && globeData) {
       globeRef.current
         .hexPolygonsData(countries.features)
         .hexPolygonResolution(3)
@@ -162,7 +167,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
         });
       startAnimation();
     }
-  }, [globeData]);
+  }, [isMounted, globeData]);
 
   const startAnimation = () => {
     if (!globeRef.current || !globeData) return;
@@ -203,7 +208,7 @@ export function Globe({ globeConfig, data }: WorldProps) {
   };
 
   useEffect(() => {
-    if (!globeRef.current || !globeData) return;
+    if (!isMounted || !globeRef.current || !globeData) return;
 
     const interval = setInterval(() => {
       if (!globeRef.current || !globeData) return;
@@ -221,7 +226,11 @@ export function Globe({ globeConfig, data }: WorldProps) {
     return () => {
       clearInterval(interval);
     };
-  }, [globeRef.current, globeData]);
+  }, [isMounted, globeRef.current, globeData]);
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <>
@@ -232,24 +241,46 @@ export function Globe({ globeConfig, data }: WorldProps) {
 
 export function WebGLRendererConfig() {
   const { gl, size } = useThree();
+  const [isMounted, setIsMounted] = useState(false);
+  const [pixelRatio, setPixelRatio] = useState(1);
 
   useEffect(() => {
-    gl.setPixelRatio(window.devicePixelRatio);
+    setIsMounted(true);
+    if (typeof window !== 'undefined') {
+      setPixelRatio(window.devicePixelRatio);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted || !gl || !size) return;
+    
+    gl.setPixelRatio(pixelRatio);
     gl.setSize(size.width, size.height);
     gl.setClearColor(0xffaaff, 0);
-  }, []);
+  }, [isMounted, gl, size, pixelRatio]);
 
   return null;
 }
 
 export function World(props: WorldProps) {
   const { globeConfig } = props;
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  if (!isMounted) {
+    return null;
+  }
+
   const scene = new Scene();
   scene.fog = new Fog(0xffffff, 400, 2000);
+  
   return (
     <Canvas scene={scene} camera={new PerspectiveCamera(50, aspect, 180, 1800)}>
       <WebGLRendererConfig />
-      <ambientLight color={globeConfig.ambientLight} intensity={0.6} />
+      <ambientLight color={globeConfig.ambientLight} intensity={2} />
       <directionalLight
         color={globeConfig.directionalLeftLight}
         position={new Vector3(-400, 100, 400)}
@@ -263,7 +294,7 @@ export function World(props: WorldProps) {
         position={new Vector3(-200, 500, 200)}
         intensity={0.8}
       />
-      <Globe {...props} />
+      <Globe globeConfig={globeConfig} data={props.data} />
       <OrbitControls
         enablePan={false}
         enableZoom={false}
@@ -271,7 +302,7 @@ export function World(props: WorldProps) {
         maxDistance={cameraZ}
         autoRotateSpeed={1}
         autoRotate={true}
-        minPolarAngle={Math.PI / 3.5}
+        minPolarAngle={Math.PI / 3}
         maxPolarAngle={Math.PI - Math.PI / 3}
       />
     </Canvas>

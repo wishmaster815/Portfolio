@@ -1,6 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "motion/react";
+import React, { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
@@ -14,20 +14,37 @@ export const FlipWords = ({
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
+  const [isMounted, setIsMounted] = useState(false);
 
-  // thanks for the fix Julian - https://github.com/Julian-AT
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const startAnimation = useCallback(() => {
+    if (!isMounted) return;
     const word = words[words.indexOf(currentWord) + 1] || words[0];
     setCurrentWord(word);
     setIsAnimating(true);
-  }, [currentWord, words]);
+  }, [currentWord, words, isMounted]);
 
   useEffect(() => {
-    if (!isAnimating)
-      setTimeout(() => {
+    if (!isMounted) return;
+    
+    if (!isAnimating) {
+      const timer = setTimeout(() => {
         startAnimation();
       }, duration);
-  }, [isAnimating, duration, startAnimation]);
+      return () => clearTimeout(timer);
+    }
+  }, [isAnimating, duration, startAnimation, isMounted]);
+
+  if (!isMounted) {
+    return (
+      <span className={cn("text-neutral-900 dark:text-neutral-100 px-2", className)}>
+        {words[0]}
+      </span>
+    );
+  }
 
   return (
     <AnimatePresence

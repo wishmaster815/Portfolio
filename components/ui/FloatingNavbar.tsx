@@ -28,19 +28,26 @@ export const FloatingNav = ({
     setIsMounted(true);
   }, []);
 
-  useMotionValueEvent(scrollYProgress, "change", (current) => {
-    if (typeof window !== 'undefined' && typeof current === "number") {
-      let direction = current! - scrollYProgress.getPrevious()!;
+  useEffect(() => {
+    if (!isMounted) return;
 
-      if (scrollYProgress.get() < 0.05) {
-        setVisible(true);
-      } else if (direction < 0) {
-        setVisible(true);
-      } else {
-        setVisible(false);
+    const handleScroll = (current: number) => {
+      if (typeof current === "number") {
+        let direction = current - scrollYProgress.getPrevious()!;
+
+        if (scrollYProgress.get() < 0.05) {
+          setVisible(true);
+        } else if (direction < 0) {
+          setVisible(true);
+        } else {
+          setVisible(false);
+        }
       }
-    }
-  });
+    };
+
+    const unsubscribe = scrollYProgress.on("change", handleScroll);
+    return () => unsubscribe();
+  }, [isMounted, scrollYProgress]);
 
   if (!isMounted) return null;
 

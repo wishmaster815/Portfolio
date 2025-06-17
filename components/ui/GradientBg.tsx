@@ -1,6 +1,7 @@
 "use client";
+import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 
 export const BackgroundGradientAnimation = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
@@ -39,7 +40,15 @@ export const BackgroundGradientAnimation = ({
   const [curY, setCurY] = useState(0);
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
   useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isMounted) return;
+
     document.body.style.setProperty(
       "--gradient-background-start",
       gradientBackgroundStart
@@ -56,7 +65,32 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--pointer-color", pointerColor);
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
-  }, []);
+
+    return () => {
+      document.body.style.removeProperty("--gradient-background-start");
+      document.body.style.removeProperty("--gradient-background-end");
+      document.body.style.removeProperty("--first-color");
+      document.body.style.removeProperty("--second-color");
+      document.body.style.removeProperty("--third-color");
+      document.body.style.removeProperty("--fourth-color");
+      document.body.style.removeProperty("--fifth-color");
+      document.body.style.removeProperty("--pointer-color");
+      document.body.style.removeProperty("--size");
+      document.body.style.removeProperty("--blending-value");
+    };
+  }, [
+    isMounted,
+    gradientBackgroundStart,
+    gradientBackgroundEnd,
+    firstColor,
+    secondColor,
+    thirdColor,
+    fourthColor,
+    fifthColor,
+    pointerColor,
+    size,
+    blendingValue,
+  ]);
 
   useEffect(() => {
     function move() {
@@ -85,6 +119,10 @@ export const BackgroundGradientAnimation = ({
   useEffect(() => {
     setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
   }, []);
+
+  if (!isMounted) {
+    return <div className={className}>{children}</div>;
+  }
 
   return (
     <div
