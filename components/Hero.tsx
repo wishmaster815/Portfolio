@@ -51,11 +51,11 @@ const Hero = () => {
             className="text-center text-[40px] md:text-5xl lg:text-6xl"
           />
 
-          <p className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
-            Hi! I&apos;m Jayesh,
+          <div className="text-center md:tracking-wider mb-4 text-sm md:text-lg lg:text-2xl">
+            <span>Hi! I&apos;m Jayesh,</span>
             <FlipWords words={words} />
-            based in India.
-          </p>
+            <span>based in India.</span>
+          </div>
 
           <div className="flex justify-center gap-4">
             <a href="https://drive.google.com/file/d/16Qj2BlL2oAqnkVr-_YNHYWGiFQcYoq8I/view?usp=sharing">
