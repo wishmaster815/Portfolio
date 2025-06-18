@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
+import ClientOnly from "./ClientOnly";
 
 const GlowingCardContent = ({
   className,
@@ -42,10 +43,18 @@ const GlowingCardContent = ({
   );
 };
 
-// Export a dynamically imported version of the component
-export const GlowingCard = dynamic(
-  () => Promise.resolve(GlowingCardContent),
-  {
-    ssr: false,
-  }
-);
+const GlowingCard = ({
+  className,
+  children,
+}: {
+  className?: string;
+  children: React.ReactNode;
+}) => {
+  return (
+    <ClientOnly>
+      <GlowingCardContent className={className}>{children}</GlowingCardContent>
+    </ClientOnly>
+  );
+};
+
+export default GlowingCard;
