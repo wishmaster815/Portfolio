@@ -1,12 +1,16 @@
 export const navItems = [
-  { name: "Home", link: "#home" },
-  { name: "About", link: "#about" },
-  { name: "Projects", link: "#projects" },
-  { name: "ToolBox", link: "#skills" },
-  { name: "Contact", link: "#contact" },
+  { key: 1, name: "Home", link: "#home" },
+  { key: 2, name: "About", link: "#about" },
+  { key: 3, name: "Projects", link: "#projects" },
+  { key: 4, name: "ToolBox", link: "#skills" },
+  { key: 5, name: "Contact", link: "#contact" },
 ];
 
-export const words = ['Full Stack Web Developer', 'AI Engineer', 'UI/UX Designer']
+export const words = [
+  "Full Stack Web Developer",
+  "AI Engineer",
+  "UI/UX Designer",
+];
 
 export const gridItems = [
   {

@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { IoCopyOutline } from "react-icons/io5";
-
-// Also install this npm i --save-dev @types/react-lottie
-import Lottie from "react-lottie";
-
+import dynamic from "next/dynamic";
 import { cn } from "@/lib/utils";
+
+const Lottie = dynamic(() => import("lottie-react"), { ssr: false });
+const BackgroundGradientAnimation = dynamic(() => import("./GradientBg").then(mod => mod.BackgroundGradientAnimation), { ssr: false });
 
 interface BentoGridItemProps {
   className?: string;
@@ -18,7 +18,6 @@ interface BentoGridItemProps {
   spareImg?: string;
 }
 
-import { BackgroundGradientAnimation } from "./GradientBg";
 import animationData from "@/data/confetti.json";
 import MagicButton from "../MagicButton";
 
@@ -56,15 +55,6 @@ export const BentoGridItem = ({
   const rightLists = ["VueJS", "NuxtJS", "GraphQL"];
 
   const [copied, setCopied] = useState(false);
-
-  const defaultOptions = {
-    loop: copied,
-    autoplay: copied,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  };
 
   const handleCopy = () => {
     const text = "jayeshshrivastava815@gmail.com";
@@ -172,17 +162,16 @@ export const BentoGridItem = ({
           )}
           {id === 6 && (
             <div className="mt-5 relative">
-              {/* button border magic from tailwind css buttons  */}
-              {/* add rounded-md h-8 md:h-8, remove rounded-full */}
-              {/* remove focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50 */}
-              {/* add handleCopy() for the copy the text */}
               <div
                 className={`absolute -bottom-5 right-0 ${
                   copied ? "block" : "block"
                 }`}
               >
-                {/* <img src="/confetti.gif" alt="confetti" /> */}
-                <Lottie options={defaultOptions} height={200} width={400} />
+                <Lottie
+                  animationData={animationData}
+                  loop={copied}
+                  style={{ width: 400, height: 200 }}
+                />
               </div>
 
               <MagicButton

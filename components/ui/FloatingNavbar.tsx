@@ -9,14 +9,14 @@ import {
 import Link from "next/link";
 import { cn } from "@/lib/utils";
 
-export const FloatingNav = ({
+export const FloatingNavbar = ({
   navItems,
   className,
 }: {
   navItems: {
     name: string;
     link: string;
-    icon?: JSX.Element;
+    key: number;
   }[];
   className?: string;
 }) => {
@@ -76,17 +76,16 @@ export const FloatingNav = ({
           border: "1px solid rgba(255, 255, 255, 0.125)",
         }}
       >
-        {navItems.map((navItem) => (
-          <Link
-            key={navItem.name}
-            href={navItem.link}
+        {navItems.map(({ key, name, link }) => (
+          <a
+            key={key}
+            href={link}
             className={cn(
               "relative dark:text-neutral-50 items-center flex space-x-1 text-neutral-600 dark:hover:text-neutral-300 hover:text-neutral-500"
             )}
           >
-            <span className="block sm:hidden">{navItem.icon}</span>
-            <span className="text-sm !cursor-pointer">{navItem.name}</span>
-          </Link>
+            <span className="text-sm !cursor-pointer">{name}</span>
+          </a>
         ))}
       </motion.div>
     </AnimatePresence>
