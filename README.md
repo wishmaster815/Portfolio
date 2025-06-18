@@ -2,7 +2,7 @@
 
 This is the source code for my personal portfolio website built using modern web technologies. It showcases my work, skills, and ways to connect with me.
 
-🔗 **Live Site:** [wishmaster.com](https://github.com/wishmaster815/Portfolio)
+🔗 **Live Site:** [wishmaster815](https://wishmaster815.vercel.app)
 
 ---
 
