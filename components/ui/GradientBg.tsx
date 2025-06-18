@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
 import { useRef } from "react";
+import dynamic from "next/dynamic";
 
-export const BackgroundGradientAnimation = ({
+const GradientBgContent = ({
   gradientBackgroundStart = "rgb(108, 0, 162)",
   gradientBackgroundEnd = "rgb(0, 17, 82)",
   firstColor = "18, 113, 255",
@@ -35,20 +36,15 @@ export const BackgroundGradientAnimation = ({
   containerClassName?: string;
 }) => {
   const interactiveRef = useRef<HTMLDivElement>(null);
-
   const [curX, setCurX] = useState(0);
   const [curY, setCurY] = useState(0);
   const [tgX, setTgX] = useState(0);
   const [tgY, setTgY] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
+  const [isSafari, setIsSafari] = useState(false);
 
   useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isMounted) return;
-
+    if (typeof window === 'undefined') return;
+    
     document.body.style.setProperty(
       "--gradient-background-start",
       gradientBackgroundStart
@@ -66,7 +62,10 @@ export const BackgroundGradientAnimation = ({
     document.body.style.setProperty("--size", size);
     document.body.style.setProperty("--blending-value", blendingValue);
 
+    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
+
     return () => {
+      if (typeof window === 'undefined') return;
       document.body.style.removeProperty("--gradient-background-start");
       document.body.style.removeProperty("--gradient-background-end");
       document.body.style.removeProperty("--first-color");
@@ -79,7 +78,6 @@ export const BackgroundGradientAnimation = ({
       document.body.style.removeProperty("--blending-value");
     };
   }, [
-    isMounted,
     gradientBackgroundStart,
     gradientBackgroundEnd,
     firstColor,
@@ -114,15 +112,6 @@ export const BackgroundGradientAnimation = ({
       setTgY(event.clientY - rect.top);
     }
   };
-
-  const [isSafari, setIsSafari] = useState(false);
-  useEffect(() => {
-    setIsSafari(/^((?!chrome|android).)*safari/i.test(navigator.userAgent));
-  }, []);
-
-  if (!isMounted) {
-    return <div className={className}>{children}</div>;
-  }
 
   return (
     <div
@@ -201,19 +190,15 @@ export const BackgroundGradientAnimation = ({
             `opacity-100`
           )}
         ></div>
-
-        {interactive && (
-          <div
-            ref={interactiveRef}
-            onMouseMove={handleMouseMove}
-            className={cn(
-              `absolute [background:radial-gradient(circle_at_center,_rgba(var(--pointer-color),_0.8)_0,_rgba(var(--pointer-color),_0)_50%)_no-repeat]`,
-              `[mix-blend-mode:var(--blending-value)] w-full h-full -top-1/2 -left-1/2`,
-              `opacity-70`
-            )}
-          ></div>
-        )}
       </div>
     </div>
   );
 };
+
+// Export a dynamically imported version of the component
+export const BackgroundGradientAnimation = dynamic(
+  () => Promise.resolve(GradientBgContent),
+  {
+    ssr: false,
+  }
+);

@@ -2,22 +2,17 @@
 
 import React, { useEffect, useState } from "react";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
 
-export const GlowingCard = ({
+const GlowingCardContent = ({
   className,
   children,
 }: {
   className?: string;
   children: React.ReactNode;
 }) => {
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const handlePointerMove = (e: PointerEvent) => {
-    if (!isMounted) return;
+    if (typeof window === 'undefined') return;
     const { clientX, clientY } = e;
     const { left, top, width, height } = document.body.getBoundingClientRect();
     const x = clientX - left;
@@ -27,24 +22,17 @@ export const GlowingCard = ({
   };
 
   useEffect(() => {
-    if (!isMounted) return;
+    if (typeof window === 'undefined') return;
     
     document.body.addEventListener("pointermove", handlePointerMove, {
       passive: true,
     });
 
     return () => {
+      if (typeof window === 'undefined') return;
       document.body.removeEventListener("pointermove", handlePointerMove);
     };
-  }, [isMounted]);
-
-  if (!isMounted) {
-    return (
-      <div className={cn("relative group", className)}>
-        {children}
-      </div>
-    );
-  }
+  }, []);
 
   return (
     <div className={cn("relative group", className)}>
@@ -53,3 +41,11 @@ export const GlowingCard = ({
     </div>
   );
 };
+
+// Export a dynamically imported version of the component
+export const GlowingCard = dynamic(
+  () => Promise.resolve(GlowingCardContent),
+  {
+    ssr: false,
+  }
+);
