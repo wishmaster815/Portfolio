@@ -88,12 +88,12 @@ export const projects = [
   },
   {
     id: 2,
-    title: "Yoom - Video Conferencing App",
-    des: "Simplify your video conferencing experience with Yoom. Seamlessly connect with colleagues and friends.",
-    img: "/p2.svg",
-    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/stream.svg", "/c.svg"],
-    link: "/ui.yoom.com",
-    githubLink: "https://github.com/wishmaster815/yoom",
+    title: "Personal Portfolio Website",
+    des: "Built a fully responsive, animated portfolio website to showcase my projects, experience, and skills. Integrated smooth scroll, interactive components, and theme support using modern frontend technologies like Framer Motion and Tailwind CSS.",
+    img: "/portfolio.png",
+    iconLists: ["/next.svg", "/tail.svg", "/ts.svg", "/vercel.png", "/fm.svg"],
+    link: "https://wishmaster815.vercel.app/",
+    githubLink: "https://github.com/wishmaster815/Portfolio",
   },
   {
     id: 3,
