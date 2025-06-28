@@ -20,6 +20,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/js-logo.png" sizes="any" />
+        <meta name="google-site-verification" content="pLq6zpH0Js6XyCV4_Th0zvh-m2VuTj-04sjcDrCjZo4" />
       </head>
       <body className={inter.className}>
         <ThemeProvider
