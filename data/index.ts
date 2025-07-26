@@ -79,6 +79,21 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "DocuMind AI",
+    des: "An AI-powered tool that lets users upload PDFs and ask questions about their content. Uses LangChain, Groq LLMs, Hugging Face embeddings, FastAPI, and Next.js for real-time, context-aware Q&A.",
+    img: "/documind-poster.png",
+    iconLists: [
+      "/py.svg",
+      "/next.svg",
+      "/langchain.png",
+      "/fastapi.svg",
+      "/jina-ai.svg",
+    ],
+    link: "https://documind-ai-815.vercel.app",
+    githubLink: "https://github.com/wishmaster815/DocuMind-AI",
+  },
+  {
+    id: 2,
     title: "ConversoAI",
     des: "Converso AI is a smart chatbot powered by AI that helps users get instant, intelligent responses and automate conversations.",
     img: "/conversoAI-mockup.png",
@@ -87,7 +102,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/ConversoAI_SaaS",
   },
   {
-    id: 2,
+    id: 3,
     title: "Personal Portfolio Website",
     des: "Built a fully responsive, animated portfolio website to showcase my projects, experience, and skills. Integrated smooth scroll, interactive components, and theme support using modern frontend technologies like Framer Motion and Tailwind CSS.",
     img: "/portfolio.png",
@@ -96,7 +111,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/Portfolio",
   },
   {
-    id: 3,
+    id: 4,
     title: "BrainWave",
     des: "Unleash the power of AI within Brainwave. Upgrade your productivity with Brainwave, the open AI chat app.",
     img: "/brainWave-mockup.png",
@@ -105,7 +120,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/BrainWave-ReactJs",
   },
   {
-    id: 4,
+    id: 5,
     title: "BingeBuddy",
     des: "Your go-to movie mate! BingeBuddy helps you find the perfect movie or series based on your mood, genre, or favorites.",
     img: "/bingebuddy-mockup.png",
