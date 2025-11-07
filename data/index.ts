@@ -79,6 +79,22 @@ export const gridItems = [
 export const projects = [
   {
     id: 1,
+    title: "Birju.AI",
+    des: "Birju.AI is an AI-driven career and learning assistant that generates personalized roadmaps, stage-wise quizzes, and career counseling reports to help users learn, track progress, and grow efficiently.",
+    img: "/birju-front.png",
+    iconLists: [
+      "/py.svg",
+      "/next.svg",
+      "/langchain.png",
+      "/open.png",
+      "/fastapi.svg",
+      "/firebase.svg",
+    ],
+    link: "https://birju-frontend-2.vercel.app",
+    githubLink: "https://github.com/wishmaster815/Birju-Frontend-2",
+  },
+  {
+    id: 2,
     title: "DocuMind AI",
     des: "An AI-powered tool that lets users upload PDFs and ask questions about their content. Uses LangChain, Groq LLMs, Hugging Face embeddings, FastAPI, and Next.js for real-time, context-aware Q&A.",
     img: "/documind-poster.png",
@@ -93,7 +109,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/DocuMind-AI",
   },
   {
-    id: 2,
+    id: 3,
     title: "ConversoAI",
     des: "Converso AI is a smart chatbot powered by AI that helps users get instant, intelligent responses and automate conversations.",
     img: "/conversoAI-mockup.png",
@@ -102,7 +118,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/ConversoAI_SaaS",
   },
   {
-    id: 3,
+    id: 4,
     title: "Personal Portfolio Website",
     des: "Built a fully responsive, animated portfolio website to showcase my projects, experience, and skills. Integrated smooth scroll, interactive components, and theme support using modern frontend technologies like Framer Motion and Tailwind CSS.",
     img: "/portfolio.png",
@@ -111,7 +127,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/Portfolio",
   },
   {
-    id: 4,
+    id: 5,
     title: "BrainWave",
     des: "Unleash the power of AI within Brainwave. Upgrade your productivity with Brainwave, the open AI chat app.",
     img: "/brainWave-mockup.png",
@@ -120,7 +136,7 @@ export const projects = [
     githubLink: "https://github.com/wishmaster815/BrainWave-ReactJs",
   },
   {
-    id: 5,
+    id: 6,
     title: "BingeBuddy",
     des: "Your go-to movie mate! BingeBuddy helps you find the perfect movie or series based on your mood, genre, or favorites.",
     img: "/bingebuddy-mockup.png",
